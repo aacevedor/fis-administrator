@@ -1,0 +1,1383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="fisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="citys">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="countrys">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permissions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="professions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="int" Nullable="false" />
+          <Property Name="updated_at" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles_permissions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="permission_id" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="services">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="price" Type="money" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="services_comments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="service_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="services_confirm">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="service_id" Type="int" Nullable="false" />
+          <Property Name="price" Type="money" Nullable="false" />
+          <Property Name="service_time" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="total_price" Type="money" Nullable="false" />
+          <Property Name="request_date" Type="datetime" Nullable="false" />
+          <Property Name="delivery_date" Type="datetime" Nullable="false" />
+          <Property Name="service_status_id" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="services_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="services_types">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="transaccions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="services_confirm_id" Type="int" Nullable="false" />
+          <Property Name="bussines_porcentage" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="mount" Type="int" Nullable="false" />
+          <Property Name="app_mount" Type="money" Nullable="false" />
+          <Property Name="user_mount" Type="money" Nullable="false" />
+          <Property Name="user_beneficiary_id" Type="int" Nullable="false" />
+          <Property Name="platform_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="receipt" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="signature" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="product_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transactions_returns">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transaction_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="int" Nullable="false" />
+          <Property Name="mount" Type="money" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" />
+        </EntityType>
+        <EntityType Name="users_comments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_target" Type="int" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users_profile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="city" Type="int" Nullable="false" />
+          <Property Name="country" Type="int" Nullable="false" />
+          <Property Name="gender" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="profession" Type="int" Nullable="false" />
+          <Property Name="phone" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="geolocalization" Type="geography" Nullable="false" />
+          <Property Name="image" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users_qualify">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_target" Type="int" Nullable="false" />
+          <Property Name="starts" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_citys_countrys">
+          <End Role="countrys" Type="Self.countrys" Multiplicity="1" />
+          <End Role="citys" Type="Self.citys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countrys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="citys">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_roles_permissions_permissions">
+          <End Role="permissions" Type="Self.permissions" Multiplicity="1" />
+          <End Role="roles_permissions" Type="Self.roles_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permissions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roles_permissions">
+              <PropertyRef Name="permission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_roles_permissions_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="roles_permissions" Type="Self.roles_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roles_permissions">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_roles_permissions_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="roles_permissions" Type="Self.roles_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roles_permissions">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_comments_services">
+          <End Role="services" Type="Self.services" Multiplicity="1" />
+          <End Role="services_comments" Type="Self.services_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services_comments">
+              <PropertyRef Name="service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_comments_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="services_comments" Type="Self.services_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services_comments">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_confirm_services">
+          <End Role="services" Type="Self.services" Multiplicity="1" />
+          <End Role="services_confirm" Type="Self.services_confirm" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services_confirm">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_confirm_services_status">
+          <End Role="services_status" Type="Self.services_status" Multiplicity="1" />
+          <End Role="services_confirm" Type="Self.services_confirm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services_confirm">
+              <PropertyRef Name="service_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_services_types">
+          <End Role="services_types" Type="Self.services_types" Multiplicity="1" />
+          <End Role="services" Type="Self.services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services_types">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="services" Type="Self.services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transaccions_services_confirm">
+          <End Role="services_confirm" Type="Self.services_confirm" Multiplicity="1" />
+          <End Role="transaccions" Type="Self.transaccions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services_confirm">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaccions">
+              <PropertyRef Name="services_confirm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactions_returns_transaccions">
+          <End Role="transaccions" Type="Self.transaccions" Multiplicity="1" />
+          <End Role="transactions_returns" Type="Self.transactions_returns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transaccions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transactions_returns">
+              <PropertyRef Name="transaction_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_comments_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_comments" Type="Self.users_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_comments">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_comments_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_comments" Type="Self.users_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_comments">
+              <PropertyRef Name="user_target" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_profile_citys">
+          <End Role="citys" Type="Self.citys" Multiplicity="1" />
+          <End Role="users_profile" Type="Self.users_profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_profile">
+              <PropertyRef Name="city" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_profile_countrys">
+          <End Role="countrys" Type="Self.countrys" Multiplicity="1" />
+          <End Role="users_profile" Type="Self.users_profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countrys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_profile">
+              <PropertyRef Name="country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_profile_professions">
+          <End Role="professions" Type="Self.professions" Multiplicity="1" />
+          <End Role="users_profile" Type="Self.users_profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="professions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_profile">
+              <PropertyRef Name="profession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_profile_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_profile" Type="Self.users_profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_profile">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_qualify_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_qualify" Type="Self.users_qualify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_qualify">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_qualify_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_qualify" Type="Self.users_qualify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_qualify">
+              <PropertyRef Name="user_target" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fisModelStoreContainer">
+          <EntitySet Name="citys" EntityType="Self.citys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countrys" EntityType="Self.countrys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permissions" EntityType="Self.permissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="professions" EntityType="Self.professions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roles_permissions" EntityType="Self.roles_permissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="services_comments" EntityType="Self.services_comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="services_confirm" EntityType="Self.services_confirm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="services_status" EntityType="Self.services_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="services_types" EntityType="Self.services_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transaccions" EntityType="Self.transaccions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transactions_returns" EntityType="Self.transactions_returns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users_comments" EntityType="Self.users_comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users_profile" EntityType="Self.users_profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users_qualify" EntityType="Self.users_qualify" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_citys_countrys" Association="Self.FK_citys_countrys">
+            <End Role="countrys" EntitySet="countrys" />
+            <End Role="citys" EntitySet="citys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_roles_permissions_permissions" Association="Self.FK_roles_permissions_permissions">
+            <End Role="permissions" EntitySet="permissions" />
+            <End Role="roles_permissions" EntitySet="roles_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_roles_permissions_roles" Association="Self.FK_roles_permissions_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="roles_permissions" EntitySet="roles_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_roles_permissions_users" Association="Self.FK_roles_permissions_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="roles_permissions" EntitySet="roles_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_comments_services" Association="Self.FK_services_comments_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="services_comments" EntitySet="services_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_comments_users" Association="Self.FK_services_comments_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="services_comments" EntitySet="services_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_confirm_services" Association="Self.FK_services_confirm_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="services_confirm" EntitySet="services_confirm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_confirm_services_status" Association="Self.FK_services_confirm_services_status">
+            <End Role="services_status" EntitySet="services_status" />
+            <End Role="services_confirm" EntitySet="services_confirm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_services_types" Association="Self.FK_services_services_types">
+            <End Role="services_types" EntitySet="services_types" />
+            <End Role="services" EntitySet="services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_users" Association="Self.FK_services_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="services" EntitySet="services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transaccions_services_confirm" Association="Self.FK_transaccions_services_confirm">
+            <End Role="services_confirm" EntitySet="services_confirm" />
+            <End Role="transaccions" EntitySet="transaccions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactions_returns_transaccions" Association="Self.FK_transactions_returns_transaccions">
+            <End Role="transaccions" EntitySet="transaccions" />
+            <End Role="transactions_returns" EntitySet="transactions_returns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_comments_users" Association="Self.FK_users_comments_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_comments" EntitySet="users_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_comments_users1" Association="Self.FK_users_comments_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_comments" EntitySet="users_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_profile_citys" Association="Self.FK_users_profile_citys">
+            <End Role="citys" EntitySet="citys" />
+            <End Role="users_profile" EntitySet="users_profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_profile_countrys" Association="Self.FK_users_profile_countrys">
+            <End Role="countrys" EntitySet="countrys" />
+            <End Role="users_profile" EntitySet="users_profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_profile_professions" Association="Self.FK_users_profile_professions">
+            <End Role="professions" EntitySet="professions" />
+            <End Role="users_profile" EntitySet="users_profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_profile_users" Association="Self.FK_users_profile_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_profile" EntitySet="users_profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_qualify_users" Association="Self.FK_users_qualify_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_qualify" EntitySet="users_qualify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_qualify_users1" Association="Self.FK_users_qualify_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_qualify" EntitySet="users_qualify" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="citys">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="countrys" Relationship="Self.FK_citys_countrys" FromRole="citys" ToRole="countrys" />
+          <NavigationProperty Name="users_profile" Relationship="Self.FK_users_profile_citys" FromRole="citys" ToRole="users_profile" />
+        </EntityType>
+        <EntityType Name="countrys">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="citys" Relationship="Self.FK_citys_countrys" FromRole="countrys" ToRole="citys" />
+          <NavigationProperty Name="users_profile" Relationship="Self.FK_users_profile_countrys" FromRole="countrys" ToRole="users_profile" />
+        </EntityType>
+        <EntityType Name="permissions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="roles_permissions" Relationship="Self.FK_roles_permissions_permissions" FromRole="permissions" ToRole="roles_permissions" />
+        </EntityType>
+        <EntityType Name="professions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="users_profile" Relationship="Self.FK_users_profile_professions" FromRole="professions" ToRole="users_profile" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="Int32" Nullable="false" />
+          <Property Name="updated_at" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="roles_permissions" Relationship="Self.FK_roles_permissions_roles" FromRole="roles" ToRole="roles_permissions" />
+        </EntityType>
+        <EntityType Name="roles_permissions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="permission_id" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="permissions" Relationship="Self.FK_roles_permissions_permissions" FromRole="roles_permissions" ToRole="permissions" />
+          <NavigationProperty Name="roles" Relationship="Self.FK_roles_permissions_roles" FromRole="roles_permissions" ToRole="roles" />
+          <NavigationProperty Name="users" Relationship="Self.FK_roles_permissions_users" FromRole="roles_permissions" ToRole="users" />
+        </EntityType>
+        <EntityType Name="services">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="services_comments" Relationship="Self.FK_services_comments_services" FromRole="services" ToRole="services_comments" />
+          <NavigationProperty Name="services_confirm" Relationship="Self.FK_services_confirm_services" FromRole="services" ToRole="services_confirm" />
+          <NavigationProperty Name="services_types" Relationship="Self.FK_services_services_types" FromRole="services" ToRole="services_types" />
+          <NavigationProperty Name="users" Relationship="Self.FK_services_users" FromRole="services" ToRole="users" />
+        </EntityType>
+        <EntityType Name="services_comments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="service_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="services" Relationship="Self.FK_services_comments_services" FromRole="services_comments" ToRole="services" />
+          <NavigationProperty Name="users" Relationship="Self.FK_services_comments_users" FromRole="services_comments" ToRole="users" />
+        </EntityType>
+        <EntityType Name="services_confirm">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="service_id" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="service_time" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="total_price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="request_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="delivery_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="service_status_id" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="services" Relationship="Self.FK_services_confirm_services" FromRole="services_confirm" ToRole="services" />
+          <NavigationProperty Name="services_status" Relationship="Self.FK_services_confirm_services_status" FromRole="services_confirm" ToRole="services_status" />
+          <NavigationProperty Name="transaccions" Relationship="Self.FK_transaccions_services_confirm" FromRole="services_confirm" ToRole="transaccions" />
+        </EntityType>
+        <EntityType Name="services_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="services_confirm" Relationship="Self.FK_services_confirm_services_status" FromRole="services_status" ToRole="services_confirm" />
+        </EntityType>
+        <EntityType Name="services_types">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="services" Relationship="Self.FK_services_services_types" FromRole="services_types" ToRole="services" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="transaccions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="services_confirm_id" Type="Int32" Nullable="false" />
+          <Property Name="bussines_porcentage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="mount" Type="Int32" Nullable="false" />
+          <Property Name="app_mount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="user_mount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="user_beneficiary_id" Type="Int32" Nullable="false" />
+          <Property Name="platform_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="receipt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="signature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="product_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="services_confirm" Relationship="Self.FK_transaccions_services_confirm" FromRole="transaccions" ToRole="services_confirm" />
+          <NavigationProperty Name="transactions_returns" Relationship="Self.FK_transactions_returns_transaccions" FromRole="transaccions" ToRole="transactions_returns" />
+        </EntityType>
+        <EntityType Name="transactions_returns">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transaction_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="Int32" Nullable="false" />
+          <Property Name="mount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="transaccions" Relationship="Self.FK_transactions_returns_transaccions" FromRole="transactions_returns" ToRole="transaccions" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="roles_permissions" Relationship="Self.FK_roles_permissions_users" FromRole="users" ToRole="roles_permissions" />
+          <NavigationProperty Name="services" Relationship="Self.FK_services_users" FromRole="users" ToRole="services" />
+          <NavigationProperty Name="services_comments" Relationship="Self.FK_services_comments_users" FromRole="users" ToRole="services_comments" />
+          <NavigationProperty Name="users_comments" Relationship="Self.FK_users_comments_users" FromRole="users" ToRole="users_comments" />
+          <NavigationProperty Name="users_comments1" Relationship="Self.FK_users_comments_users1" FromRole="users" ToRole="users_comments" />
+          <NavigationProperty Name="users_profile" Relationship="Self.FK_users_profile_users" FromRole="users" ToRole="users_profile" />
+          <NavigationProperty Name="users_qualify" Relationship="Self.FK_users_qualify_users" FromRole="users" ToRole="users_qualify" />
+          <NavigationProperty Name="users_qualify1" Relationship="Self.FK_users_qualify_users1" FromRole="users" ToRole="users_qualify" />
+        </EntityType>
+        <EntityType Name="users_comments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_target" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="users" Relationship="Self.FK_users_comments_users" FromRole="users_comments" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="Self.FK_users_comments_users1" FromRole="users_comments" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users_profile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="Int32" Nullable="false" />
+          <Property Name="country" Type="Int32" Nullable="false" />
+          <Property Name="gender" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="profession" Type="Int32" Nullable="false" />
+          <Property Name="phone" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="geolocalization" Type="Geography" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="citys" Relationship="Self.FK_users_profile_citys" FromRole="users_profile" ToRole="citys" />
+          <NavigationProperty Name="countrys" Relationship="Self.FK_users_profile_countrys" FromRole="users_profile" ToRole="countrys" />
+          <NavigationProperty Name="professions" Relationship="Self.FK_users_profile_professions" FromRole="users_profile" ToRole="professions" />
+          <NavigationProperty Name="users" Relationship="Self.FK_users_profile_users" FromRole="users_profile" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users_qualify">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_target" Type="Int32" Nullable="false" />
+          <Property Name="starts" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="users" Relationship="Self.FK_users_qualify_users" FromRole="users_qualify" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="Self.FK_users_qualify_users1" FromRole="users_qualify" ToRole="users" />
+        </EntityType>
+        <Association Name="FK_citys_countrys">
+          <End Role="countrys" Type="Self.countrys" Multiplicity="1" />
+          <End Role="citys" Type="Self.citys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countrys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="citys">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_profile_citys">
+          <End Role="citys" Type="Self.citys" Multiplicity="1" />
+          <End Role="users_profile" Type="Self.users_profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_profile">
+              <PropertyRef Name="city" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_profile_countrys">
+          <End Role="countrys" Type="Self.countrys" Multiplicity="1" />
+          <End Role="users_profile" Type="Self.users_profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countrys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_profile">
+              <PropertyRef Name="country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_roles_permissions_permissions">
+          <End Role="permissions" Type="Self.permissions" Multiplicity="1" />
+          <End Role="roles_permissions" Type="Self.roles_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permissions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roles_permissions">
+              <PropertyRef Name="permission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_profile_professions">
+          <End Role="professions" Type="Self.professions" Multiplicity="1" />
+          <End Role="users_profile" Type="Self.users_profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="professions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_profile">
+              <PropertyRef Name="profession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_roles_permissions_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="roles_permissions" Type="Self.roles_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roles_permissions">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_roles_permissions_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="roles_permissions" Type="Self.roles_permissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="roles_permissions">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_comments_services">
+          <End Role="services" Type="Self.services" Multiplicity="1" />
+          <End Role="services_comments" Type="Self.services_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services_comments">
+              <PropertyRef Name="service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_confirm_services">
+          <End Role="services" Type="Self.services" Multiplicity="1" />
+          <End Role="services_confirm" Type="Self.services_confirm" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services_confirm">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_services_types">
+          <End Role="services_types" Type="Self.services_types" Multiplicity="1" />
+          <End Role="services" Type="Self.services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services_types">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="services" Type="Self.services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_comments_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="services_comments" Type="Self.services_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services_comments">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_services_confirm_services_status">
+          <End Role="services_status" Type="Self.services_status" Multiplicity="1" />
+          <End Role="services_confirm" Type="Self.services_confirm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="services_confirm">
+              <PropertyRef Name="service_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transaccions_services_confirm">
+          <End Role="services_confirm" Type="Self.services_confirm" Multiplicity="1" />
+          <End Role="transaccions" Type="Self.transaccions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services_confirm">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaccions">
+              <PropertyRef Name="services_confirm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transactions_returns_transaccions">
+          <End Role="transaccions" Type="Self.transaccions" Multiplicity="1" />
+          <End Role="transactions_returns" Type="Self.transactions_returns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transaccions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transactions_returns">
+              <PropertyRef Name="transaction_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_comments_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_comments" Type="Self.users_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_comments">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_comments_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_comments" Type="Self.users_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_comments">
+              <PropertyRef Name="user_target" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_profile_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_profile" Type="Self.users_profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_profile">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_qualify_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_qualify" Type="Self.users_qualify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_qualify">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_qualify_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_qualify" Type="Self.users_qualify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_qualify">
+              <PropertyRef Name="user_target" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="citys" EntityType="Self.citys" />
+          <EntitySet Name="countrys" EntityType="Self.countrys" />
+          <EntitySet Name="permissions" EntityType="Self.permissions" />
+          <EntitySet Name="professions" EntityType="Self.professions" />
+          <EntitySet Name="roles" EntityType="Self.roles" />
+          <EntitySet Name="roles_permissions" EntityType="Self.roles_permissions" />
+          <EntitySet Name="services" EntityType="Self.services" />
+          <EntitySet Name="services_comments" EntityType="Self.services_comments" />
+          <EntitySet Name="services_confirm" EntityType="Self.services_confirm" />
+          <EntitySet Name="services_status" EntityType="Self.services_status" />
+          <EntitySet Name="services_types" EntityType="Self.services_types" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="transaccions" EntityType="Self.transaccions" />
+          <EntitySet Name="transactions_returns" EntityType="Self.transactions_returns" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="users_comments" EntityType="Self.users_comments" />
+          <EntitySet Name="users_profile" EntityType="Self.users_profile" />
+          <EntitySet Name="users_qualify" EntityType="Self.users_qualify" />
+          <AssociationSet Name="FK_citys_countrys" Association="Self.FK_citys_countrys">
+            <End Role="countrys" EntitySet="countrys" />
+            <End Role="citys" EntitySet="citys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_profile_citys" Association="Self.FK_users_profile_citys">
+            <End Role="citys" EntitySet="citys" />
+            <End Role="users_profile" EntitySet="users_profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_profile_countrys" Association="Self.FK_users_profile_countrys">
+            <End Role="countrys" EntitySet="countrys" />
+            <End Role="users_profile" EntitySet="users_profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_roles_permissions_permissions" Association="Self.FK_roles_permissions_permissions">
+            <End Role="permissions" EntitySet="permissions" />
+            <End Role="roles_permissions" EntitySet="roles_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_profile_professions" Association="Self.FK_users_profile_professions">
+            <End Role="professions" EntitySet="professions" />
+            <End Role="users_profile" EntitySet="users_profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_roles_permissions_roles" Association="Self.FK_roles_permissions_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="roles_permissions" EntitySet="roles_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_roles_permissions_users" Association="Self.FK_roles_permissions_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="roles_permissions" EntitySet="roles_permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_comments_services" Association="Self.FK_services_comments_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="services_comments" EntitySet="services_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_confirm_services" Association="Self.FK_services_confirm_services">
+            <End Role="services" EntitySet="services" />
+            <End Role="services_confirm" EntitySet="services_confirm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_services_types" Association="Self.FK_services_services_types">
+            <End Role="services_types" EntitySet="services_types" />
+            <End Role="services" EntitySet="services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_users" Association="Self.FK_services_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="services" EntitySet="services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_comments_users" Association="Self.FK_services_comments_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="services_comments" EntitySet="services_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_services_confirm_services_status" Association="Self.FK_services_confirm_services_status">
+            <End Role="services_status" EntitySet="services_status" />
+            <End Role="services_confirm" EntitySet="services_confirm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transaccions_services_confirm" Association="Self.FK_transaccions_services_confirm">
+            <End Role="services_confirm" EntitySet="services_confirm" />
+            <End Role="transaccions" EntitySet="transaccions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transactions_returns_transaccions" Association="Self.FK_transactions_returns_transaccions">
+            <End Role="transaccions" EntitySet="transaccions" />
+            <End Role="transactions_returns" EntitySet="transactions_returns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_comments_users" Association="Self.FK_users_comments_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_comments" EntitySet="users_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_comments_users1" Association="Self.FK_users_comments_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_comments" EntitySet="users_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_profile_users" Association="Self.FK_users_profile_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_profile" EntitySet="users_profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_qualify_users" Association="Self.FK_users_qualify_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_qualify" EntitySet="users_qualify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_qualify_users1" Association="Self.FK_users_qualify_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_qualify" EntitySet="users_qualify" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fisModelStoreContainer" CdmEntityContainer="fisEntities">
+          <EntitySetMapping Name="citys">
+            <EntityTypeMapping TypeName="fisModel.citys">
+              <MappingFragment StoreEntitySet="citys">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countrys">
+            <EntityTypeMapping TypeName="fisModel.countrys">
+              <MappingFragment StoreEntitySet="countrys">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permissions">
+            <EntityTypeMapping TypeName="fisModel.permissions">
+              <MappingFragment StoreEntitySet="permissions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="professions">
+            <EntityTypeMapping TypeName="fisModel.professions">
+              <MappingFragment StoreEntitySet="professions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="fisModel.roles">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles_permissions">
+            <EntityTypeMapping TypeName="fisModel.roles_permissions">
+              <MappingFragment StoreEntitySet="roles_permissions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="permission_id" ColumnName="permission_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services">
+            <EntityTypeMapping TypeName="fisModel.services">
+              <MappingFragment StoreEntitySet="services">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services_comments">
+            <EntityTypeMapping TypeName="fisModel.services_comments">
+              <MappingFragment StoreEntitySet="services_comments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="service_id" ColumnName="service_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services_confirm">
+            <EntityTypeMapping TypeName="fisModel.services_confirm">
+              <MappingFragment StoreEntitySet="services_confirm">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="service_id" ColumnName="service_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="service_time" ColumnName="service_time" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="request_date" ColumnName="request_date" />
+                <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+                <ScalarProperty Name="service_status_id" ColumnName="service_status_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services_status">
+            <EntityTypeMapping TypeName="fisModel.services_status">
+              <MappingFragment StoreEntitySet="services_status">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services_types">
+            <EntityTypeMapping TypeName="fisModel.services_types">
+              <MappingFragment StoreEntitySet="services_types">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="fisModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transaccions">
+            <EntityTypeMapping TypeName="fisModel.transaccions">
+              <MappingFragment StoreEntitySet="transaccions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="services_confirm_id" ColumnName="services_confirm_id" />
+                <ScalarProperty Name="bussines_porcentage" ColumnName="bussines_porcentage" />
+                <ScalarProperty Name="mount" ColumnName="mount" />
+                <ScalarProperty Name="app_mount" ColumnName="app_mount" />
+                <ScalarProperty Name="user_mount" ColumnName="user_mount" />
+                <ScalarProperty Name="user_beneficiary_id" ColumnName="user_beneficiary_id" />
+                <ScalarProperty Name="platform_id" ColumnName="platform_id" />
+                <ScalarProperty Name="receipt" ColumnName="receipt" />
+                <ScalarProperty Name="signature" ColumnName="signature" />
+                <ScalarProperty Name="product_type" ColumnName="product_type" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactions_returns">
+            <EntityTypeMapping TypeName="fisModel.transactions_returns">
+              <MappingFragment StoreEntitySet="transactions_returns">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="mount" ColumnName="mount" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="fisModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_comments">
+            <EntityTypeMapping TypeName="fisModel.users_comments">
+              <MappingFragment StoreEntitySet="users_comments">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_target" ColumnName="user_target" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_profile">
+            <EntityTypeMapping TypeName="fisModel.users_profile">
+              <MappingFragment StoreEntitySet="users_profile">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="profession" ColumnName="profession" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="geolocalization" ColumnName="geolocalization" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_qualify">
+            <EntityTypeMapping TypeName="fisModel.users_qualify">
+              <MappingFragment StoreEntitySet="users_qualify">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_target" ColumnName="user_target" />
+                <ScalarProperty Name="starts" ColumnName="starts" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

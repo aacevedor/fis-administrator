@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2af1978ec4ba4383b94be2e79abc21f2" Name="Diagram1">
+        <EntityTypeShape EntityType="fisModel.citys" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.countrys" Width="1.5" PointX="1.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.permissions" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.professions" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.roles" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.roles_permissions" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.services" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.services_comments" Width="1.5" PointX="8.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.services_confirm" Width="1.5" PointX="11.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.services_status" Width="1.5" PointX="9" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.services_types" Width="1.5" PointX="3.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.transaccions" Width="1.5" PointX="13.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.transactions_returns" Width="1.5" PointX="15.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.users" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.users_comments" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.users_profile" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fisModel.users_qualify" Width="1.5" PointX="3" PointY="26.875" IsExpanded="true" />
+        <AssociationConnector Association="fisModel.FK_citys_countrys" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_users_profile_citys" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_users_profile_countrys" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_roles_permissions_permissions" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_users_profile_professions" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_roles_permissions_roles" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_roles_permissions_users" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_services_comments_services" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_services_confirm_services" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_services_services_types" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_services_users" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_services_comments_users" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_services_confirm_services_status" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_transaccions_services_confirm" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_transactions_returns_transaccions" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_users_comments_users" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_users_comments_users1" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_users_profile_users" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_users_qualify_users" ManuallyRouted="false" />
+        <AssociationConnector Association="fisModel.FK_users_qualify_users1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
