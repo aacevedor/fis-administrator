@@ -184,8 +184,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CitysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfessionsController.cs" />
+    <Compile Include="Controllers\UsersCommentsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UsersProfileController.cs" />
+    <Compile Include="Controllers\UsersQualifyController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\citys.cs">
       <DependentUpon>Model1.tt</DependentUpon>
